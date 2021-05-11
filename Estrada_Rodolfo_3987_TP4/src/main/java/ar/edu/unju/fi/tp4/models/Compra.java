@@ -8,6 +8,11 @@ public class Compra {
 	private Producto producto;
 	private int cantidad;
 	private double total;
+	
+	public Compra() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Compra(String id, Producto producto, int cantidad, double total) {
 		super();
 		this.id = id;
@@ -15,6 +20,7 @@ public class Compra {
 		this.cantidad = cantidad;
 		this.total = total;
 	}
+	
 	public String getId() {
 		return id;
 	}
