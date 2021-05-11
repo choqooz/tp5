@@ -8,8 +8,10 @@ public interface ICompraService {
 	
 	public void addCompra(Compra compra);
 
-	public List<Compra> getCompra();
+	public List<Compra> getListCompras();
 	
 	public void generarListaCompra();
+	
+	public Compra generarCompra();
 
 }

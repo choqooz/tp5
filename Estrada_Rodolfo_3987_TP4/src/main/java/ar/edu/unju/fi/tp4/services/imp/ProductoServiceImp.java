@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.tp4.models.Producto;
 import ar.edu.unju.fi.tp4.services.IProductoService;
+import ar.edu.unju.fi.tp4.util.TablaProducto;
 
 @Service
 public class ProductoServiceImp implements IProductoService {
@@ -19,7 +20,7 @@ public class ProductoServiceImp implements IProductoService {
 	@Autowired
 	Producto producto;
 	
-	List<Producto> productos = new ArrayList<Producto>();
+	List<Producto> productos;
 	@Override
 	public void addProducto(Producto producto) {
 		this.productos.add(producto);
@@ -28,6 +29,8 @@ public class ProductoServiceImp implements IProductoService {
 
 	@Override
 	public Producto getUltimoProducto() {
+		if (productos==null)
+			generarListProductos();
 		int indUltProd = productos.size() -1;
 		Producto producto = productos.get(indUltProd);
 		return producto;
@@ -39,7 +42,38 @@ public class ProductoServiceImp implements IProductoService {
 		LOGGER.info("Method: getProducto()");
 		LOGGER.info("Result: object Producto");
 		//LOGGER.info("Se ha guardado un producto: "+getUltimoProducto());
-		return this.producto;
+		Producto producto= new Producto();
+		return producto;
 	}
+
+	@Override
+	public Producto findByCodigo(int codigo) {
+		for (int i=0;i<getListProductos().size();i++) {
+			if (codigo==getListProductos().get(i).getCodigo()) {
+				producto.setCodigo(getListProductos().get(i).getCodigo());
+				producto.setMarca(getListProductos().get(i).getMarca());
+				producto.setNombre(getListProductos().get(i).getNombre());
+				producto.setPrecio(getListProductos().get(i).getPrecio());
+				producto.setStock(getListProductos().get(i).getStock());
+			}
+		}
+		return producto;
+	}
+
+	@Override
+	public void generarListProductos() {
+		productos=TablaProducto.listaProductos;
+		Producto producto = new Producto(10,"Pasta Dental",250d,"Colgate",100);
+		productos.add(producto);
+		
+	}
+
+	@Override
+	public List<Producto> getListProductos() {
+		if (productos==null)
+			generarListProductos();
+		return productos;
+	}
+	
 	
 }

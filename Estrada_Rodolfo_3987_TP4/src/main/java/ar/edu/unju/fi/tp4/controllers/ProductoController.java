@@ -34,4 +34,12 @@ public class ProductoController {
 		return mav;
 	}
 	
+	@GetMapping("/producto/listado")
+	public ModelAndView getListProductoPage() {
+		
+		ModelAndView modelAndView = new ModelAndView("productos");
+		modelAndView.addObject("productos", productoService.getListProductos());
+		return modelAndView;
+	}
+	
 }
