@@ -33,7 +33,7 @@ public class CompraController {
 	@PostMapping("/compra/guardar")
 	public ModelAndView postGuardarNuevaCompra(@ModelAttribute("nuevaCompra") Compra nuevaCompra) {
 		
-		Producto prod= productoService.findByCodigo(nuevaCompra.getProductoCod());
+		Producto prod= productoService.findByCodigo(nuevaCompra.getProducto().getCodigo());
 		nuevaCompra.setProducto(prod);
 		compraService.addCompra(nuevaCompra);
 		

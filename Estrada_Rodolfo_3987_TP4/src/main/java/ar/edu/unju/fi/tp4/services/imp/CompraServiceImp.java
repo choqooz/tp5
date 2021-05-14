@@ -53,13 +53,13 @@ public class CompraServiceImp implements ICompraService {
 		compra.setCantidad(cantidad);
 		compra.setProducto(producto);
 		compra.setId(id);
-		compra.setProductoCod(id);
+		//compra.setProductoCod(id);
 		compras.add(compra);
 	}
 
 	@Override
 	public Compra generarCompra() {
-		
+		Compra compra = new Compra();
 		return compra;
 	}
 

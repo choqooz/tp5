@@ -48,6 +48,7 @@ public class ProductoServiceImp implements IProductoService {
 
 	@Override
 	public Producto findByCodigo(int codigo) {
+		Producto producto = new Producto();
 		for (int i=0;i<getListProductos().size();i++) {
 			if (codigo==getListProductos().get(i).getCodigo()) {
 				producto.setCodigo(getListProductos().get(i).getCodigo());
