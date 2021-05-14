@@ -22,8 +22,8 @@
 							<!-- Seleccionar nombre de producto -->
 								<label>Producto</label>
 								
-								<select th:field="*{productoCod}" class="form-control">
-										<option value ="10" th:text="Seleccionar" selected></option>
+								<select th:field="*{producto.codigo}" class="form-control">
+										
 										<option th:each="producto : ${productos}" 
 												th:value="${producto.codigo}" 
 												th:text="${producto.nombre}"
