@@ -51,8 +51,8 @@ public class CompraServiceImp implements ICompraService {
 		
 		Compra compra =new Compra();
 		compra.setCantidad(cantidad);
-		compra.setProducto(producto);
-		compra.setId(id);
+		compra.setProducto((List<Producto>) producto);
+		compra.setId((long) id);
 		//compra.setProductoCod(id);
 		compras.add(compra);
 	}

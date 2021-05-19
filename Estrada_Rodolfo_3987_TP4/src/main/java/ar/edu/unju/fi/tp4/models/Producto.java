@@ -1,25 +1,54 @@
 package ar.edu.unju.fi.tp4.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import org.springframework.stereotype.Component;
 
 @Component
+@Entity
+@Table(name = "productos")
 public class Producto {
-
-	private int codigo;
+	
+	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	private Integer codigo;
+	@Column (name = "prod_nombre")
 	private String nombre;
-	private double precio;
+	@Column (name = "prod_precio")
+	private Double precio;
+	@Column (name = "prod_marca")
 	private String marca;
-	private int stock;
+	@Column (name = "prod_stock")
+	private Integer stock;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name = "comp_id")
+	private Compra compra;
 	
 	public Producto() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getCodigo() {
+	public Compra getCompra() {
+		return compra;
+	}
+
+	public void setCompra(Compra compra) {
+		this.compra = compra;
+	}
+
+	public Integer getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 
@@ -31,11 +60,11 @@ public class Producto {
 		this.nombre = nombre;
 	}
 
-	public double getPrecio() {
+	public Double getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(double precio) {
+	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
 
@@ -47,15 +76,15 @@ public class Producto {
 		this.marca = marca;
 	}
 
-	public int getStock() {
+	public Integer getStock() {
 		return stock;
 	}
 
-	public void setStock(int stock) {
+	public void setStock(Integer stock) {
 		this.stock = stock;
 	}
 
-	public Producto(int codigo, String nombre, double precio, String marca, int stock) {
+	public Producto(Integer codigo, String nombre, Double precio, String marca, Integer stock) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;

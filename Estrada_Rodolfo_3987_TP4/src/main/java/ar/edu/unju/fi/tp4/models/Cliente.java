@@ -6,28 +6,47 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 @Component
+@Entity
+@Table(name = "clientes")
 public class Cliente {
+	@Column(name = "cli_tipdoc")
 	private String tipoDocumento ;
-	private int nroDocumento;
+	@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long nroDocumento;
+	@Column(name = "cli_nombAp", nullable=false)
 	private String nombreApellido;
+	@Column(name = "cli_email")
 	private String email;
+	@Column(name = "cli_pass")
 	private String password;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "cli_fechaNac")
 	private LocalDate fechaNacimiento;
-	private int codigoAreaTelefono;
-	private int nroTelefono;
+	@Column(name = "cli_codArea")
+	private Long codigoAreaTelefono;
+	@Column(name = "cli_nroTel")
+	private Long nroTelefono;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "cli_fechaUltComp")
 	private LocalDate fechaUltimaCompra; 
 	
 	public Cliente() {
 	}
 
-	public Cliente(String tipoDocumento, int nroDocumento, String nombreApellido, String email, String password,
-			LocalDate fechaNacimiento, int codigoAreaTelefono, int nroTelefono, LocalDate fechaUltimaCompra) {
+	public Cliente(String tipoDocumento, Long nroDocumento, String nombreApellido, String email, String password,
+			LocalDate fechaNacimiento, Long codigoAreaTelefono, Long nroTelefono, LocalDate fechaUltimaCompra) {
 		super();
 		this.tipoDocumento = tipoDocumento;
 		this.nroDocumento = nroDocumento;
@@ -43,17 +62,34 @@ public class Cliente {
 	public String getTipoDocumento() {
 		return tipoDocumento;
 	}
+	 
 
-	public void setTipoDocumento(String tipoDocumento) {
-		this.tipoDocumento = tipoDocumento;
-	}
-
-	public int getNroDocumento() {
+	public Long getNroDocumento() {
 		return nroDocumento;
 	}
 
-	public void setNroDocumento(int nroDocumento) {
+	public void setNroDocumento(Long nroDocumento) {
 		this.nroDocumento = nroDocumento;
+	}
+
+	public Long getCodigoAreaTelefono() {
+		return codigoAreaTelefono;
+	}
+
+	public void setCodigoAreaTelefono(Long codigoAreaTelefono) {
+		this.codigoAreaTelefono = codigoAreaTelefono;
+	}
+
+	public Long getNroTelefono() {
+		return nroTelefono;
+	}
+
+	public void setNroTelefono(Long nroTelefono) {
+		this.nroTelefono = nroTelefono;
+	}
+
+	public void setTipoDocumento(String tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
 	}
 
 	public String getNombreApellido() {
@@ -88,21 +124,6 @@ public class Cliente {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public int getCodigoAreaTelefono() {
-		return codigoAreaTelefono;
-	}
-
-	public void setCodigoAreaTelefono(int codigoAreaTelefono) {
-		this.codigoAreaTelefono = codigoAreaTelefono;
-	}
-
-	public int getNroTelefono() {
-		return nroTelefono;
-	}
-
-	public void setNroTelefono(int nroTelefono) {
-		this.nroTelefono = nroTelefono;
-	}
 
 	public LocalDate getFechaUltimaCompra() {
 		return fechaUltimaCompra;
